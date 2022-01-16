@@ -51,10 +51,10 @@ docker run --rm --entrypoint bash runsascoded/mf-pip-issue-batch -c '
 # botocore           1.23.37   # ❌
 ```
 
-`pip install awscli` upgraded `botocore` to a version that's incompatible with the already-installed `aiobotocore`.
+Here, `pip install awscli` upgraded `botocore` to a version that's incompatible with the already-installed `aiobotocore`.
 
 ## Workaround
-The simplest workaround I've found is to ensure Metaflow's `pip install awscli click requests boto3` command no-ops, by having *some version* of those libraries already installed. They should also have consistent transitive dependency versions, otherwise `pip install` will "help" with those as well). 
+The simplest workaround I've found is to ensure Metaflow's `pip install awscli click requests boto3` command no-ops, by having *some version* of those libraries already installed in the image. They should also have consistent transitive dependency versions, otherwise `pip install` will "help" with those as well). 
 
 ## Scratch
 These seem like the minimal Metaflow configs to submit to Batch (and reproduce the issue):
