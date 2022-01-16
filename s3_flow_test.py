@@ -15,3 +15,6 @@ class S3FlowTest(FlowSpec):
     @step
     def end(self):
         print(f'Found {len(self.df)} records')
+
+if __name__ == '__main__':
+    S3FlowTest()
