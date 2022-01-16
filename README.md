@@ -2,12 +2,12 @@
 Metaflow runs `pip install awscli … boto3` [while setting up task environements in Batch](https://github.com/Netflix/metaflow/blob/2.4.8/metaflow/metaflow_environment.py#L85), which can break `aiobotocore<2.1.0`.
 
 ## Repro
-Docker image [runsascoded/mf-pip-issue-batch](https://hub.docker.com/repository/docker/runsascoded/mf-pip-issue-batch) ([`batch.dockerfile`](./batch.dockerfile)) pins recent versions of `botocore` and `aiobotocore`:
+Docker image [runsascoded/mf-pip-issue-batch](https://hub.docker.com/r/runsascoded/mf-pip-issue-batch) ([`batch.dockerfile`](./batch.dockerfile)) pins recent versions of `botocore` and `aiobotocore`:
 - [`aiobotocore==1.4.2`](https://pypi.org/project/aiobotocore/1.4.2/) (October 5, 2021)
 - [`botocore==1.20.106`](https://pypi.org/project/botocore/1.20.106/) (July 6, 2021, [required by `aiobotocore==1.4.2`](https://github.com/aio-libs/aiobotocore/blob/1.4.2/setup.py#L10))
 
 ### Local mode: ✅
-They work fine together normally; [runsascoded/mf-pip-issue-local](https://hub.docker.com/repository/docker/runsascoded/mf-pip-issue-local) ([`local.dockerfile`](./local.dockerfile)) runs [`s3_flow_test.py`](./s3_flow_test.py) successfully (in "local" mode):
+They work fine together normally; [runsascoded/mf-pip-issue-local](https://hub.docker.com/r/runsascoded/mf-pip-issue-local) ([`local.dockerfile`](./local.dockerfile)) runs [`s3_flow_test.py`](./s3_flow_test.py) successfully (in "local" mode):
 ```bash
 docker run -it --rm runsascoded/mf-pip-issue-local
 # Metaflow 2.4.8 executing S3FlowTest for user:user
