@@ -4,7 +4,7 @@ import pandas as pd
 class S3FlowTest(FlowSpec):
     '''Simple flow reading from S3 using pd.read_csv (which uses aiobotocore->botocore)
 
-    `metaflow_environment.get_package_commands` includes a `pip install awscli … boto3` that can trigger an upgrade of
+    `metaflow_environment.get_package_commands` includes a `pip install awscli …` that can trigger an upgrade of
     `botocore` but not `aiobotocore`, causing `pd.read_csv("s3://…")` to crash if `aiobotocore<2.1.0`.
 
     botocore>=1.23.0 (2021-11-08) removed a method (`ClientCreator._register_lazy_block_unknown_fips_pseudo_regions`).
